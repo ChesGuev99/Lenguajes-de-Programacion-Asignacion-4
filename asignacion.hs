@@ -3,6 +3,7 @@ module Asignacion where
 import Vars
 import Sintax
 import AsVals
+import EvalProp
   
   
 -- import Data.Map (Map, fromList, lookup)
@@ -13,16 +14,17 @@ import AsVals
 a :: Proposition
 aa :: Proposition
 b :: Proposition
-a = Conjuncion (Constante True) (Variable "B")
+a = Conjuncion (Constante False) (Variable "B")
 b = Disyuncion (Variable "A") (Variable "B")
-aa = Implicacion a b
+aa = Implicacion b a
 -- a = Negacion a
 -- a = Negacion(Implicacion(Conjuncion (Constante True) (Variable "B")) (Disyuncion (Variable "A") (Variable "B")))
 
-listaA :: [Proposition]
-listaB :: [Bool]
-listaA = [Variable "A",Variable "B"]
-listaB = [True, False]
 
-main = print (as_vals listaA listaB)
+listaB :: [Bool]
+listaA = vars aa
+listaB = [True, True]
+test = as_vals listaA listaB
+
+main = print (evalProp aa test)
    -- putStrLn "Hello World"  
