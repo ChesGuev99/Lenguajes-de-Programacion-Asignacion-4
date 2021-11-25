@@ -19,10 +19,10 @@ imprimir (Constante    False)       = "False"
 imprimir (Constante    True)        = "True"
 imprimir (Variable     var)         = var   
 imprimir (Negacion     prop1)       = "~" ++ imprimir prop1
-imprimir (Conjuncion   prop1 prop2) = "Conjuncion (" ++ imprimirPropAux "/\\" prop1 prop2 ++ ")"
-imprimir (Disyuncion   prop1 prop2) = "Disyuncion (" ++ imprimirPropAux "\\/" prop1 prop2 ++ ")"
-imprimir (Implicacion  prop1 prop2) = "Implicacion (" ++ imprimirPropAux "=>" prop1 prop2 ++ ")"
-imprimir (Equivalencia prop1 prop2) = "Equivalencia (" ++ imprimirPropAux "<=>" prop1 prop2 ++ ")"
+imprimir (Conjuncion   prop1 prop2) = "Conjuncion (" ++ imprimirPropAux " , " prop1 prop2 ++ ")"
+imprimir (Disyuncion   prop1 prop2) = "Disyuncion (" ++ imprimirPropAux " , " prop1 prop2 ++ ")"
+imprimir (Implicacion  prop1 prop2) = "Implicacion (" ++ imprimirPropAux " , " prop1 prop2 ++ ")"
+imprimir (Equivalencia prop1 prop2) = "Equivalencia (" ++ imprimirPropAux " , " prop1 prop2 ++ ")"
 
 --Funcion Auxuliar para mostrar los datos
 imprimirPropAux :: String -> Proposition -> Proposition -> String
