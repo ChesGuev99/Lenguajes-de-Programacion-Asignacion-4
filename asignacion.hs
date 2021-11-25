@@ -3,6 +3,7 @@ module Asignacion where
 import Vars
 import Sintax
 import AsVals
+import Gen_bools
   
   
 -- import Data.Map (Map, fromList, lookup)
@@ -24,5 +25,8 @@ listaB :: [Bool]
 listaA = [Variable "A",Variable "B"]
 listaB = [True, False]
 
-main = print (as_vals listaA listaB)
+-- imprimir aa
+-- vars aa
+-- print (as_vals listaA listaB)
+main = print (gen_bools 4)
    -- putStrLn "Hello World"  
