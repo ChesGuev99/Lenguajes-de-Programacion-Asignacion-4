@@ -1,3 +1,6 @@
+import Data.List (group, sort)
+import Data.Map (Map, fromList, lookup)
+
 -- data Var = Var Char
 --     deriving (Eq, Show)
 
@@ -27,7 +30,20 @@ imprimirPropAux operation prp1 prp2= imprimir(prp1) ++ " " ++ operation ++ " " +
 
 
 a :: Proposition
-a = Conjuncion (Variable "A") (Variable "B")
+a = Negacion((Disyuncion (Conjuncion (Constante True) (Variable "B")) Variable "A" ))
 
-main = print (imprimir a)
+
+variables :: Proposition -> [String]
+variables expr = let 
+                     vars_ (Constante tf)       vs = []  
+                     vars_ (Variable      v)     vs = [v]
+                     vars_ (Negacion      e)     vs = vars_ e vs
+                     vars_ (Conjuncion   e1 e2) vs = vars_ e1 vs ++ vars_ e2 vs
+                     vars_ (Disyuncion   e1 e2) vs = vars_ e1 vs ++ vars_ e2 vs
+                     vars_ (Implicacion   e1 e2) vs = vars_ e1 vs ++ vars_ e2 vs
+                     vars_ (Equivalencia e1 e2) vs = vars_ e1 vs ++ vars_ e2 vs
+                 in  map head . group . sort $ vars_ expr []
+
+
+main = print (variables a)
    -- putStrLn "Hello World"  
