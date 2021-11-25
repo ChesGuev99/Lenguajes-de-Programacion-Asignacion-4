@@ -2,6 +2,7 @@
 module Asignacion where
 import Vars
 import Sintax
+import AsVals
   
   
 -- import Data.Map (Map, fromList, lookup)
@@ -18,5 +19,10 @@ aa = Implicacion a b
 -- a = Negacion a
 -- a = Negacion(Implicacion(Conjuncion (Constante True) (Variable "B")) (Disyuncion (Variable "A") (Variable "B")))
 
-main = print (vars aa)
+listaA :: [Proposition]
+listaB :: [Bool]
+listaA = [Variable "A",Variable "B"]
+listaB = [True, False]
+
+main = print (as_vals listaA listaB)
    -- putStrLn "Hello World"  
