@@ -14,5 +14,7 @@ varsMain expr = let
                     las_vars (Equivalencia v1 v2)  vs = las_vars v1 vs ++ las_vars v2 vs
                  in las_vars expr []
 
+-- Funcion encargada de redireccionar hacia varsMain
+-- Luego de obtener la lista de variables, elimina las repeticiones y ordena la lista
 vars :: Proposition -> [String]
 vars p = sort(nub (varsMain p))

@@ -3,8 +3,8 @@ module Asignacion where
 import Vars
 import Sintax
 import AsVals
+import Gen_bools
 import EvalProp
-  
   
 -- import Data.Map (Map, fromList, lookup)
 
