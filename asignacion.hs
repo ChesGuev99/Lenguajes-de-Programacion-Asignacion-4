@@ -5,6 +5,7 @@ import Sintax
 import AsVals
 import Gen_bools
 import EvalProp
+import Fnd
   
 -- import Data.Map (Map, fromList, lookup)
 
@@ -18,7 +19,7 @@ c = Negacion(Constante True)
 a = Conjuncion (Constante True) (Variable "B")
 --a = Conjuncion (Variable "C") (Variable "B")
 b = Disyuncion (Variable "A") (Variable "B")
-aa = Implicacion b a
+aa = Equivalencia b a
 -- a = Negacion a
 -- a = Negacion(Implicacion(Conjuncion (Constante True) (Variable "B")) (Disyuncion (Variable "A") (Variable "B")))
 len = 4
@@ -33,5 +34,5 @@ r = "vars -> "++(imprimir c) ++ "  ->   " ++ show(vars c)
 s = "gen_bools -> "++ show(len) ++ "  ->   " ++ show(gen_bools len) 
 t = "as_vals -> " ++ show(vars aa) ++ " + " ++ show(listaB) ++ "  ->   " ++ show(as_vals (vars aa) listaB) 
 
-main = print (t)
+main = print (deMorgan aa)
    -- putStrLn "Hello World"  
