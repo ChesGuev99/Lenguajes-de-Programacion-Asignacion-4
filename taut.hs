@@ -11,31 +11,37 @@ import Data.List
 -- incrementar i = i + 1 --(╯°□°）╯
 
 
-toEvalProp :: Proposition -> [(String, Bool)] -> Bool
+toEvalProp :: Proposition -> [(String, Bool)] -> Bool 
 toEvalProp prop vals = evalProp prop vals
 
-recorrer :: Proposition -> [[Bool]]-> Bool
-recorrer _ [[]] = True
+recorrer :: Proposition -> [[Bool]]-> [[Bool]]
+recorrer _ [[]] = []
 recorrer prop lista = 
     let
         toEval = as_vals (vars prop) (head (lista))
+        len = length lista
     in
         if toEvalProp prop toEval
             then 
-                recorrer prop (drop 1 lista)
-        else False
+                if len == 1
+                    then
+                        []
+                else
+                    recorrer prop (drop 1 lista)
+        else [head (lista)]
 
-taut :: Proposition -> Bool
+taut :: Proposition -> String
 taut prop = 
     let 
         variables =  vars prop
         n = length variables
         lista_combinaciones_booleanas = gen_bools n
+        result = recorrer prop lista_combinaciones_booleanas
     in
-        if recorrer prop lista_combinaciones_booleanas
-            then True
+        if result == []
+            then imprimir prop ++ "  es una tautologia "
         else
-            False
+            imprimir prop ++ "  no es una tautologia, por que  " ++ show (as_vals variables (head result))
     
 -- taut :: Proposition -> Indice -> Bool 
 -- taut prop indice = let
@@ -57,3 +63,8 @@ taut prop =
 --                 in False
 --                      --retorna false y vamonos  
 --                  --CHES COMO RETORNO EVALUACION_ES_VERDADERA??? o(´Д｀*)o
+
+-- propTaut = Implicacion (Conjuncion (Variable "A") (Variable "B")) (Variable "A")
+-- a = Constante True
+
+-- main = print (taut a)
