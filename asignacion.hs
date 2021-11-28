@@ -16,14 +16,16 @@ import Bonita
 a :: Proposition
 aa :: Proposition
 b :: Proposition
-c = Negacion(Constante True)
---Sa = Conjuncion (Constante True) (Variable "B")
+c = Constante True
+a = Conjuncion (Constante True) (Variable "B")
 --a = Conjuncion (Variable "C") (Variable "B")
 b = Disyuncion (Variable "A") (Variable "B")
 aa = Equivalencia b a
 -- a = Negacion a
-a = Negacion(Implicacion(Conjuncion (Constante True) (Variable "B")) (Disyuncion (Variable "A") (Variable "B")))
+-- a = Negacion(Implicacion(Conjuncion (Constante True) (Variable "B")) (Disyuncion (Variable "A") (Variable "B")))
 len = 4
+
+propTaut = Implicacion (Conjuncion (Variable "A") (Variable "B")) (Variable "A")
 
 listaB :: [Bool]
 listaA = vars aa
@@ -34,6 +36,11 @@ test = as_vals listaA listaB
 r = "vars -> "++(imprimir c) ++ "  ->   " ++ show(vars c) 
 s = "gen_bools -> "++ show(len) ++ "  ->   " ++ show(gen_bools len) 
 t = "as_vals -> " ++ show(vars aa) ++ " + " ++ show(listaB) ++ "  ->   " ++ show(as_vals (vars aa) listaB) 
+u = "taut -> " ++ taut propTaut
+v = "fnd -> " ++ imprimir aa ++ "   ->   " ++ show( fnd aa)
+w = "bonita -> " ++ imprimir b ++ "  ->   " ++ bonita b
 
-main = print (bonita a)
-   -- putStrLn "Hello World"  
+
+main = print (imprimir aa)
+-- Ejemplo de llamado a funcion
+-- main = print (r)
