@@ -16,15 +16,25 @@ import Bonita
 a :: Proposition
 aa :: Proposition
 b :: Proposition
-c = Constante True
+
+-- c = ~True
+c = Negacion (Constante True)
+
+-- a = True ^ B
 a = Conjuncion (Constante True) (Variable "B")
 --a = Conjuncion (Variable "C") (Variable "B")
+
+-- b = A v B
 b = Disyuncion (Variable "A") (Variable "B")
+
+-- aa = (A v B) -> (True ^ B)
 aa = Equivalencia b a
 -- a = Negacion a
 -- a = Negacion(Implicacion(Conjuncion (Constante True) (Variable "B")) (Disyuncion (Variable "A") (Variable "B")))
 len = 4
 
+-- proposición que según la ley de absorción de leyes lógicas es verdadera
+-- propTaut = (A ^ B) -> A
 propTaut = Implicacion (Conjuncion (Variable "A") (Variable "B")) (Variable "A")
 
 listaB :: [Bool]
