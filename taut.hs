@@ -7,9 +7,6 @@ import EvalProp
 
 import Data.List
 
--- incrementar :: Int -> Int --POR QUÉ HASKELL ES TAN SHIT QUE NO PUEDE INCREMENTAR COMO UN LENGUAJE NORMAL
--- incrementar i = i + 1 --(╯°□°）╯
-
 --Funcion encargada de evaluar si la proposicion es verdadera o falsa
 toEvalProp :: Proposition -> [(String, Bool)] -> Bool 
 toEvalProp prop vals = evalProp prop vals
