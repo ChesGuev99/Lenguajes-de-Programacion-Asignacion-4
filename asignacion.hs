@@ -5,6 +5,7 @@ import Sintax
 import AsVals
 import Gen_bools
 import EvalProp
+import Taut
 import Fnd
 import Bonita
   
@@ -21,7 +22,7 @@ b :: Proposition
 c = Negacion (Constante True)
 
 -- a = True ^ B
-a = Conjuncion (Constante True) (Variable "B")
+--a = Conjuncion (Constante True) (Variable "B")
 --a = Conjuncion (Variable "C") (Variable "B")
 
 -- b = A v B
@@ -30,7 +31,7 @@ b = Disyuncion (Variable "A") (Variable "B")
 -- aa = (A v B) -> (True ^ B)
 aa = Equivalencia b a
 -- a = Negacion a
--- a = Negacion(Implicacion(Conjuncion (Constante True) (Variable "B")) (Disyuncion (Variable "A") (Variable "B")))
+a = Negacion(Implicacion(Conjuncion (Constante True) (Variable "B")) (Disyuncion (Variable "A") (Variable "B")))
 len = 4
 
 -- proposición que según la ley de absorción de leyes lógicas es verdadera
@@ -39,18 +40,18 @@ propTaut = Implicacion (Conjuncion (Variable "A") (Variable "B")) (Variable "A")
 
 listaB :: [Bool]
 listaA = vars aa
-listaB = [True, True]
+listaB = [False, False]
 test = as_vals listaA listaB
 
 -- Para mostrar las pruebas de cada funcion
-r = "vars -> "++(imprimir c) ++ "  ->   " ++ show(vars c) 
+r = "vars -> "++(imprimir aa) ++ "  ->   " ++ show(vars aa) 
 s = "gen_bools -> "++ show(len) ++ "  ->   " ++ show(gen_bools len) 
-t = "as_vals -> " ++ show(vars aa) ++ " + " ++ show(listaB) ++ "  ->   " ++ show(as_vals (vars aa) listaB) 
+t = "as_vals -> " ++ show(vars aa) ++ " + " ++ show(listaB) ++ "  ->   " ++ show(as_vals (vars aa) listaB)
+tt = "evalProp -> " ++ imprimir propTaut ++ " , " ++ show(as_vals (vars propTaut) listaB) ++ "  ->   " ++ show(evalProp propTaut (as_vals (vars propTaut) listaB)) 
 u = "taut -> " ++ taut propTaut
-v = "fnd -> " ++ imprimir aa ++ "   ->   " ++ show( fnd aa)
-w = "bonita -> " ++ imprimir b ++ "  ->   " ++ bonita b
+v = "fnd -> " ++ imprimir propTaut ++ "   ->   " ++ imprimir( fnd propTaut)
+w = "bonita -> " ++ imprimir aa ++ "  ->   " ++ bonita aa
 
-
-main = print (imprimir aa)
+main = print tt
 -- Ejemplo de llamado a funcion
 -- main = print (r)

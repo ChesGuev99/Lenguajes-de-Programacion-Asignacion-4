@@ -13,7 +13,7 @@ bonita (Equivalencia  prop1 prop2) = bonitaAux "<->" prop1 prop2
 
 muestraConectivos :: (Proposition -> String) -> String -> Proposition -> Proposition -> String
 muestraConectivos show_ conectivo prop1 prop2 =
-  “(“ : show_ prop1 ++ " " ++ conectivo ++ " " ++ show_ prop2 ++ ")"
+  "(" ++ show_ prop1 ++ " " ++ conectivo ++ " " ++ show_ prop2 ++ ")"
 
 bonitaAux :: String -> Proposition -> Proposition -> String
 bonitaAux = muestraConectivos bonita
